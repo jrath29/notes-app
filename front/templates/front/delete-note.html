@@ -1,0 +1,24 @@
+{% extends "front/index.html" %}
+
+{% load widget_tweaks %}
+
+{% block title %}Deletar nota{% endblock %}
+
+{% block conteudo %}
+<div class="container pt-5">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Excluir nota</h5>
+            <p class="card-text">Tem certeza que deseja excluir a nota <strong>{{ nota.titulo }}</strong>?</p>
+            <form method="post">
+                {% csrf_token %}
+                <div class="text-end">
+                    <a class="btn btn-secondary" href="{% url 'index' %}">Cancelar</a>
+                    <button class="btn btn-danger">Excluir</button>
+                </div>
+            </form>
+        </div>
+      </div>
+</div>
+
+{% endblock %}

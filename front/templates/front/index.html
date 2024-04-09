@@ -1,0 +1,26 @@
+{% extends "front/base.html" %}
+
+{% load widget_tweaks %}
+
+{% block title %}Notas{% endblock %}
+
+{% block conteudo %}
+<div class="container pt-5" style="display: flex; gap: 3em; flex-wrap: wrap; margin-left: 8em;">
+    {% if notes %}
+        {% for note in notes %}
+            <div class="card" style="width: 20rem;">
+                <div class="card-body">
+                    <h5 class="card-title">{{ note.title }}</h5>
+                    <p class="card-text">{{ note.description }}</p>
+                    <a href="{% url 'update_note' pk=note.pk %}" class="btn btn-outline-primary">Atualizar</a>
+                    <a href="{% url 'delete_note' pk=note.pk %}" class="btn btn-danger">Deletar</a>
+                </div>
+            </div>
+        {% endfor %}
+    {% else %}
+        <div class="text-center pt-5">
+            <p>Nenhuma nota salva. <a href="{% url 'criar_nota' %}"><strong>Clique aqui</strong></a> para criar uma nota.</p>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}
